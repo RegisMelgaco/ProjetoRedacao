@@ -1,0 +1,1 @@
+web: gunicorn projeto_redacao.wsgi --log-file -

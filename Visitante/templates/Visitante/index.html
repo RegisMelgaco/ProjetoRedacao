@@ -9,16 +9,18 @@
 		<h1>Bem vindo ao Projeto Redação</h1>
 		<p>Aqui será a nova casa para suas redações</p>
 		{% if user.is_authenticated %}
-		Hi {{ user.email }}!
-		<a href="{% url 'logout' %}">logout</a>
+			Oi {{ user.email }}!
+			<a href="{% url 'logout' %}?next=/"> Logout</a>
 		{% else %}
-		<a href="{% url 'login' %}">login</a>
+			<a href="{% url 'login' %}">login</a>
 		{% endif %}
 		<br>
 		<br>
 		<br>
-		<h2><a href="/cadastro/aluno">Cadastrar-se como Aluno!</a></h2>
-		<h2><a href="/cadastro/professor">Cadastrar-se como Corretor!</a></h2>
+		{% if not user.is_authenticated %}
+			<h2><a href="/cadastro/aluno">Cadastrar-se como Aluno!</a></h2>
+			<h2><a href="/cadastro/professor">Cadastrar-se como Corretor!</a></h2>
+		{% endif %}
 	</center>
 </body>
 </html>

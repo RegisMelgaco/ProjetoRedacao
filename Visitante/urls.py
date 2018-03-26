@@ -7,6 +7,8 @@ from Visitante.views import (
 	TeacherRegisterView,
 	)
 
+app_name = 'Visitante'
+
 urlpatterns = [
 	path('', IndexView.as_view(), name='indexUrl'),
 	path('cadastro/aluno', StudentRegisterView.as_view(), name='studentRegisterUrl'),

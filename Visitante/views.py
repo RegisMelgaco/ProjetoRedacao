@@ -23,7 +23,7 @@ class StudentRegisterView(View):
 			messages.success(request, 'Account created successfully')
 		else:
 			messages.error(request, 'Invalid Form')
-		return redirect('Visitante/cadastrar')
+		return redirect('Visitante:studentRegisterUrl')
 
 class TeacherRegisterView(View):
 	def get(self, request):
@@ -41,4 +41,4 @@ class TeacherRegisterView(View):
 			messages.success(request, 'Account created successfully')
 		else:
 			messages.error(request, 'Invalid Form')
-		return redirect('Visitante/cadastrar')
+		return redirect('Visitante:teacherRegisterUrl')

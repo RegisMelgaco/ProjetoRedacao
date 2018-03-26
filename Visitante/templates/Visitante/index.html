@@ -10,16 +10,16 @@
 		<p>Aqui será a nova casa para suas redações</p>
 		{% if user.is_authenticated %}
 			Oi {{ user.email }}!
-			<a href="{% url 'logout' %}?next=/"> Logout</a>
+			<a href="{% url 'Visitante:logout' %}?next=/"> Logout</a>
 		{% else %}
-			<a href="{% url 'login' %}">login</a>
+			<a href="{% url 'Visitante:login' %}">login</a>
 		{% endif %}
 		<br>
 		<br>
 		<br>
 		{% if not user.is_authenticated %}
-			<h2><a href="/cadastro/aluno">Cadastrar-se como Aluno!</a></h2>
-			<h2><a href="/cadastro/professor">Cadastrar-se como Corretor!</a></h2>
+			<h2><a href="{% url 'Visitante:studentRegisterUrl' %}">Cadastrar-se como Aluno!</a></h2>
+			<h2><a href="{% url 'Visitante:teacherRegisterUrl' %}">Cadastrar-se como Corretor!</a></h2>
 		{% endif %}
 	</center>
 </body>

@@ -35,13 +35,14 @@ class UserManager(BaseUserManager):
 		user.save(using=self._db)
 		return user
 
-	def create_student(self, email, password):
+	def create_student(self, email, password, genero, idade, ingresso_ensino_medio):
 		user = self.create_user(
 			email,
 			password=password,
 		)
 		user.student = True
 		user.save(using=self._db)
+		
 		return user
 
 	def create_teacher(self, email, password):
@@ -66,6 +67,18 @@ class User(AbstractBaseUser):
 	student = models.BooleanField(default=False)
 	teacher = models.BooleanField(default=False)
 
+	generos = (
+		('M', 'Masculino'),
+		('F', 'Feminino'),
+		('O', 'Outro'),
+		('P', 'Esta informação é particular')
+	)
+
+	red_pontos = models.IntegerField(default=0)
+	genero = models.CharField(choices=generos, max_length=1, default='P')
+	nascimento = models.DateField(default=None, null=True)
+	ingresso_ensino_medio = models.DateField(default=None, null=True)
+
 	USERNAME_FIELD = 'email'
 	REQUIRED_FIELDS = [] # Email & Password are required by default.
 
@@ -74,6 +87,18 @@ class User(AbstractBaseUser):
 
 	def get_short_name(self):
 		return self.email
+
+	def get_red_pontos(self):
+		return self.red_pontos
+
+	def get_genero(self):
+		return self.genero
+
+	def get_idade(self):
+		return self.idade
+
+	def get_ingresso_ensino_medio(self):
+		return self.ingresso_ensino_medio
 
 	def __str__(self):
 		return self.email

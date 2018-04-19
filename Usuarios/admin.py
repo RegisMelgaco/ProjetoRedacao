@@ -14,7 +14,7 @@ class UserAdmin(BaseUserAdmin):
 	list_filter = ('admin', 'student','teacher')
 	fieldsets = (
 		(None, {'fields': ('email', 'password')}),
-		('Personal info', {'fields': ('student','teacher')}),
+		('Personal info', {'fields': ('student','teacher', 'red_pontos', 'genero', 'nascimento', 'ingresso_ensino_medio')}),
 		('Permissions', {'fields': ('admin',)}),
 	)
 	add_fieldsets = (
@@ -29,6 +29,3 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(User, UserAdmin)
-
-
-admin.site.unregister(Group)

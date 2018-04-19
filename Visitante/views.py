@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
-from Usuarios.forms import StudentRegisterForm, TeacherRegisterForm
+from .forms import StudentRegisterForm, TeacherRegisterForm, RegisterForm
 
 class IndexView(View):
 	def get(self, request):
@@ -12,33 +12,16 @@ class StudentRegisterView(View):
 		f = StudentRegisterForm()
 
 		dic = {
-			'form': f
+			'f': f
 		}
 
 		return render(request, 'Visitante/register.html', dic)
 	def post(self, request):
 		f = StudentRegisterForm(request.POST)
+
 		if f.is_valid():
 			f.save()
 			messages.success(request, 'Account created successfully')
 		else:
-			messages.error(request, 'Invalid Form')
+			messages.error(request, f.errors)
 		return redirect('Visitante:studentRegisterUrl')
-
-class TeacherRegisterView(View):
-	def get(self, request):
-		f = TeacherRegisterForm()
-
-		dic = {
-			'form': f
-		}
-
-		return render(request, 'Visitante/register.html', dic)
-	def post(self, request):
-		f = TeacherRegisterForm(request.POST)
-		if f.is_valid():
-			f.save()
-			messages.success(request, 'Account created successfully')
-		else:
-			messages.error(request, 'Invalid Form')
-		return redirect('Visitante:teacherRegisterUrl')

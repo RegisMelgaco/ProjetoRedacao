@@ -19,7 +19,6 @@
 		<br>
 		{% if not user.is_authenticated %}
 			<h2><a href="{% url 'Visitante:studentRegisterUrl' %}">Cadastrar-se como Aluno!</a></h2>
-			<h2><a href="{% url 'Visitante:teacherRegisterUrl' %}">Cadastrar-se como Corretor!</a></h2>
 		{% endif %}
 	</center>
 </body>

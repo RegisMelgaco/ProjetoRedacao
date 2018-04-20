@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import (
-	BaseUserManager, AbstractBaseUser
+	BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
 
 class UserManager(BaseUserManager):
@@ -54,7 +54,7 @@ class UserManager(BaseUserManager):
 		user.save(using=self._db)
 		return user
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
 	email = models.EmailField(
 		verbose_name='email address',
 		max_length=255,
@@ -63,9 +63,6 @@ class User(AbstractBaseUser):
 	active = models.BooleanField(default=True)
 	staff = models.BooleanField(default=False)
 	admin = models.BooleanField(default=False)
-
-	student = models.BooleanField(default=False)
-	teacher = models.BooleanField(default=False)
 
 	generos = (
 		('M', 'Masculino'),
@@ -102,12 +99,6 @@ class User(AbstractBaseUser):
 
 	def __str__(self):
 		return self.email
-
-	def has_perm(self, perm, obj=None):
-		return True
-
-	def has_module_perms(self, app_label):
-		return True
 
 	@property
 	def is_staff(self):

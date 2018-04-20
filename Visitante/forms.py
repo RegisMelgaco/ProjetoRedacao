@@ -64,8 +64,9 @@ class StudentRegisterForm(RegisterForm):
 		user.nascimento = self.cleaned_data['nascimento']
 		user.ingresso_ensino_medio = self.cleaned_data['ingresso_ensino_medio']
 		user.genero = self.cleaned_data['genero']
-		user.student = True
 		if commit:
+			user.save()
+			user.groups.add(1)
 			user.save()
 		return user
 
@@ -87,7 +88,9 @@ class TeacherRegisterForm(RegisterForm):
 	def save(self, commit=True):
 		user = super(RegisterForm, self).save(commit=False)
 		user.set_password(self.cleaned_data["password1"])
-		user.teacher = True
+		groups.add(2)
 		if commit:
+			user.save()
+			groups.add(2)
 			user.save()
 		return user

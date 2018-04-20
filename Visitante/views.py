@@ -25,3 +25,7 @@ class StudentRegisterView(View):
 		else:
 			messages.error(request, f.errors)
 		return redirect('Visitante:studentRegisterUrl')
+
+class InfoFalhaView(View):
+	def get(self, request):
+		return render(request, 'Visitante/info.html')

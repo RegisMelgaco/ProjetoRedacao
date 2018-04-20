@@ -3,11 +3,12 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth import authenticate
 
-from Visitantes.views import 
-
 class TerminalAlunoView(View):
 	def get(self, request):
-		if authenticate(aluno=True):
-			return render(request, 'Aluno/index.html')
+		if request.user.is_authenticated:
+			if request.user.student:
+				return render(request, 'Aluno/painelAluno.html')
+			else:
+				print("não é estudante")
 		else:
-			return redirect('Visitantes:indexUrl')
+			print("não está autenticado")

@@ -1,10 +1,10 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 
-from .views import *
+from .views import TerminalAlunoView
 
 app_name = 'Aluno'
 
 urlpatterns = [
-	path('Terminal-Aluno', TerminalAlunoView.as_view(), name='terminalAlunoUrl')
+	path('Terminal-Aluno', TerminalAlunoView.as_view(), name='terminalAlunoUrl'),
 ]

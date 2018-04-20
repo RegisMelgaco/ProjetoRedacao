@@ -11,6 +11,9 @@
 		{% if user.is_authenticated %}
 			Oi {{ user.email }}!
 			<a href="{% url 'Visitante:logout' %}?next=/"> Logout</a>
+			<br>
+			<br>
+			<a href="{% url 'Aluno:terminalAlunoUrl' %}"> Terminal do aluno </a>
 		{% else %}
 			<a href="{% url 'Visitante:login' %}">login</a>
 		{% endif %}

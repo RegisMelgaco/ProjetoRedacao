@@ -10,18 +10,15 @@ class IndexView(View):
 class StudentRegisterView(View):
 	def get(self, request):
 		f = StudentRegisterForm()
-
-		dic = {
-			'f': f
-		}
+		dic = { 'f': f }
 
 		return render(request, 'Visitante/register.html', dic)
 	def post(self, request):
-		f = StudentRegisterForm(request.POST)
+		m = StudentRegisterForm(request.POST)
 
-		if f.is_valid():
-			f.save()
-			messages.success(request, 'Account created successfully')
+		if m.is_valid():
+			m.save()
+			messages.success(request, 'Conta criada com sucesso!')
 		else:
 			messages.error(request, f.errors)
 		return redirect('Visitante:studentRegisterUrl')

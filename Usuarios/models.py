@@ -59,10 +59,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 		verbose_name='email address',
 		max_length=255,
 		unique=True,
+		null=False
 	)
-	active = models.BooleanField(default=True)
-	staff = models.BooleanField(default=False)
-	admin = models.BooleanField(default=False)
+	active = models.BooleanField(default=True, null=False)
+	staff  = models.BooleanField(default=False, null=False)
+	admin  = models.BooleanField(default=False, null=False)
 
 	generos = (
 		('M', 'Masculino'),
@@ -71,9 +72,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 		('P', 'Esta informação é particular')
 	)
 
-	red_pontos = models.IntegerField(default=0)
-	genero = models.CharField(choices=generos, max_length=1, default='P')
-	nascimento = models.DateField(default=None, null=True)
+	red_pontos            = models.IntegerField(default=0, null=False)
+	red_feitas            = models.IntegerField(default=0, null=False)
+	genero                = models.CharField(choices=generos, max_length=1, default='P', null=True)
+	nascimento            = models.DateField(default=None, null=True)
 	ingresso_ensino_medio = models.DateField(default=None, null=True)
 
 	USERNAME_FIELD = 'email'

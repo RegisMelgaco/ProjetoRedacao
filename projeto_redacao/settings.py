@@ -83,8 +83,17 @@ WSGI_APPLICATION = 'projeto_redacao.wsgi.application'
 
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
-DATABASES = { 'default': config('DATABASE_URL', default=default_dburl, cast=dburl), }
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'projeto-redacao-db',
+        # 'NAME': os.path.join(BASE_DIR, 'mydb'),
+        'USER': 'myuser',
+        'PASSWORD': '32356540',
+        'HOST': '127.0.0.1',
+        'PORT': '', # 8000 is default
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

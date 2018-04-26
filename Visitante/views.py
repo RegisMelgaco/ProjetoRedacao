@@ -14,10 +14,10 @@ class StudentRegisterView(View):
 
 		return render(request, 'Visitante/register.html', dic)
 	def post(self, request):
-		m = StudentRegisterForm(request.POST)
+		f = StudentRegisterForm(request.POST)
 
-		if m.is_valid():
-			m.save()
+		if f.is_valid():
+			f.save()
 			messages.success(request, 'Conta criada com sucesso!')
 		else:
 			messages.error(request, f.errors)

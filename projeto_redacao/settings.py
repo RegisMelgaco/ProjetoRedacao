@@ -83,6 +83,7 @@ WSGI_APPLICATION = 'projeto_redacao.wsgi.application'
 
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
+""" config do db em desenvolvimento
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -94,6 +95,21 @@ DATABASES = {
         'PORT': '', # 8000 is default
     }
 }
+"""
+""" config do db em produção """
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd8lvbrpf06mc4',
+        # 'NAME': os.path.join(BASE_DIR, 'mydb'),
+        'USER': 'xfitpnykugkfyo',
+        'PASSWORD': '2520ca2de79285253c29ecbbe43b21e78626c3fc1f29623c17463910b62e0496',
+        'HOST': 'ec2-50-17-206-214.compute-1.amazonaws.com',
+        'PORT': '5432', # 8000 is default
+    }
+}
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

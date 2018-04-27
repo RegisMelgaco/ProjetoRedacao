@@ -56,7 +56,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
 	email = models.EmailField(
-		verbose_name='email address',
+		verbose_name='email',
 		max_length=255,
 		unique=True,
 		null=False
@@ -72,11 +72,15 @@ class User(AbstractBaseUser, PermissionsMixin):
 		('P', 'Esta informação é particular')
 	)
 
+	primeiro_nome         = models.CharField("primeiro Nome", max_length=12, null=False)
+	segundo_nome          = models.CharField("segundo Nome", max_length=30, null=False)
+	cep                   = models.CharField("CEP", max_length=9, null=True)
+
 	red_pontos            = models.IntegerField(default=0, null=False)
 	red_feitas            = models.IntegerField(default=0, null=False)
-	genero                = models.CharField(choices=generos, max_length=1, default='P', null=True)
-	nascimento            = models.DateField(default=None, null=True)
-	ingresso_ensino_medio = models.DateField(default=None, null=True)
+	genero                = models.CharField("genero", choices=generos, max_length=1, default='P', null=True)
+	nascimento            = models.DateField("data de nascimento", default=None, null=True)
+	ingresso_ensino_medio = models.DateField("ingresso no ensino médio", default=None, null=True)
 
 	USERNAME_FIELD = 'email'
 	REQUIRED_FIELDS = [] # Email & Password are required by default.

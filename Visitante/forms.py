@@ -35,21 +35,14 @@ class RegisterForm(forms.ModelForm):
 		return user
 
 class StudentRegisterForm(RegisterForm):
-	password1 = forms.CharField(label='Senha', widget=forms.PasswordInput)
-	password2 = forms.CharField(label='Confirme a Senha', widget=forms.PasswordInput)
 	nascimento = forms.DateField(label='Nascimento', widget=forms.SelectDateWidget(years=[y for y in range(timezone.now().year, timezone.now().year - 100, -1)]))
 	ingresso_ensino_medio = forms.DateField(label='Ingresso no Ensio Médio', widget=forms.SelectDateWidget(years=[y for y in range(timezone.now().year, timezone.now().year - 50, -1)]))
-
-	genero = forms.ChoiceField(widget=forms.RadioSelect, choices=(
-		('M', 'Masculino'),
-		('F', 'Feminino'),
-		('O', 'Outro'),
-		('P', 'Esta informação é particular')
-	))
+	password1 = forms.CharField(label='Senha', widget=forms.PasswordInput)
+	password2 = forms.CharField(label='Confirme a Senha', widget=forms.PasswordInput)
 
 	class Meta:
 		model = User
-		fields = ('email',)
+		fields = ('email', 'primeiro_nome', 'segundo_nome', 'genero', 'cep')
 
 	def clean_password2(self):
 		password1 = self.cleaned_data.get("password1")

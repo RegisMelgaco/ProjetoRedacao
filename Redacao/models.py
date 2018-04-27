@@ -2,8 +2,9 @@ from django.db import models
 from datetime import datetime
 
 class Redacao(models.Model):
-	redacao            = models.ImageField(upload_to='Redacoes', default='Redacoes/1.jpg', null=True)
-	correcao           = models.ImageField(upload_to='Correcoes', null=True)
+	redacao            = models.ImageField(upload_to='Redacoes/%Y/%m/%d/', null=True)
+	proposta           = models.IntegerField(null=False)
+	correcao           = models.ImageField(upload_to='Correcoes/%Y/%m/%d/', null=True)
 	aluno              = models.EmailField(max_length=255, null=False)
 	professor          = models.EmailField(max_length=255, null=False)
 	data_pedido        = models.DateTimeField(null=True, default=datetime.now)

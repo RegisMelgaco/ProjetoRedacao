@@ -14,7 +14,8 @@ class EnviarRedacaoView(View):
 	def post(self, request):
 		f = SendRedacaoForm(request.POST, request.FILES)
 		if f.is_valid():
-			m = Redacao(redacao = request.FILES['redacao'], aluno=request.user.email)
+			m = f.save(commit=False)
+			m.aluno = request.user.email
 			m.save()
 			messages.success(request, 'Redação enviada com sucesso!')
 		else:

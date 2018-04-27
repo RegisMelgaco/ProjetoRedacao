@@ -1,6 +1,6 @@
 from django import forms
-
 from django.utils import timezone
+from django.contrib.auth.models import Group
 
 from Usuarios.models import User
 
@@ -66,7 +66,8 @@ class StudentRegisterForm(RegisterForm):
 		user.genero = self.cleaned_data['genero']
 		if commit:
 			user.save()
-			user.groups.add(1)
+			a = Group.objects.get(name='Alunos') 
+			user.groups.add(a)
 			user.save()
 		return user
 
@@ -88,9 +89,9 @@ class TeacherRegisterForm(RegisterForm):
 	def save(self, commit=True):
 		user = super(RegisterForm, self).save(commit=False)
 		user.set_password(self.cleaned_data["password1"])
-		groups.add(2)
 		if commit:
 			user.save()
-			groups.add(2)
+			p = Group.objects.get(name='Corretores') 
+			user.groups.add(p)
 			user.save()
 		return user

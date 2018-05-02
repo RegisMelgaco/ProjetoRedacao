@@ -5,7 +5,12 @@ from .forms import StudentRegisterForm, TeacherRegisterForm, RegisterForm
 
 class IndexView(View):
 	def get(self, request):
-		return render(request, 'Visitante/index.html')
+		perm_aluno = request.user.has_perm('Usuarios.acesso_painel_aluno')
+		perm_corretor = request.user.has_perm('Usuarios.acesso_painel_corretor')
+
+		dic = {'perm_aluno': perm_aluno, 'perm_corretor': perm_corretor}
+
+		return render(request, 'Visitante/index.html', dic)
 
 class StudentRegisterView(View):
 	def get(self, request):

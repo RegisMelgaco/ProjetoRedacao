@@ -5,13 +5,13 @@ from django.contrib.auth import authenticate
 
 from .forms import *
 
-class TerminalAlunoView(View):
+class PainelAlunoView(View):
 	def get(self, request):
 		if request.user.is_authenticated:
-			if request.user.has_perm('Usuarios.acesso_terminal_aluno'):
+			if request.user.has_perm('Usuarios.acesso_painel_aluno'):
 				return render(request, 'Aluno/painelAluno.html')
 			else:
-				messages.add_message(request, messages.INFO, 'Você não tem permição de entrar no terminal de alunos')
+				messages.add_message(request, messages.INFO, 'Você não tem permição de entrar no painel de alunos')
 				return redirect('Visitante:infoFalhaUrl')
 		else:
 			messages.add_message(request, messages.INFO, 'Você não está logado')

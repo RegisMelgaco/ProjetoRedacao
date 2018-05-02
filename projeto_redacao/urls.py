@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^', include('Visitante.urls')),
     url(r'^', include('Aluno.urls')),
     url(r'^', include('Redacao.urls')),
+    url(r'^', include('Corretor.urls')),
 ]
 
 if settings.DEBUG:

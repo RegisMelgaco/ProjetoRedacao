@@ -82,6 +82,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 	nascimento            = models.DateField("data de nascimento", default=None, null=True)
 	ingresso_ensino_medio = models.DateField("ingresso no ensino médio", default=None, null=True)
 
+	redacoes              = models.ManyToManyField('Redacao.Redacao')
+
 	USERNAME_FIELD = 'email'
 	REQUIRED_FIELDS = [] # Email & Password are required by default.
 

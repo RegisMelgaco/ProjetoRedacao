@@ -35,14 +35,12 @@ class RegisterForm(forms.ModelForm):
 		return user
 
 class StudentRegisterForm(RegisterForm):
-	nascimento = forms.DateField(label='Nascimento', widget=forms.SelectDateWidget(years=[y for y in range(timezone.now().year, timezone.now().year - 100, -1)]))
-	ingresso_ensino_medio = forms.DateField(label='Ingresso no Ensio Médio', widget=forms.SelectDateWidget(years=[y for y in range(timezone.now().year, timezone.now().year - 50, -1)]))
 	password1 = forms.CharField(label='Senha', widget=forms.PasswordInput)
 	password2 = forms.CharField(label='Confirme a Senha', widget=forms.PasswordInput)
 
 	class Meta:
 		model = User
-		fields = ('email', 'primeiro_nome', 'segundo_nome', 'genero', 'cep')
+		fields = ('email', 'primeiro_nome', 'segundo_nome', 'cep')
 
 	def clean_password2(self):
 		password1 = self.cleaned_data.get("password1")
@@ -54,9 +52,6 @@ class StudentRegisterForm(RegisterForm):
 	def save(self, commit=True):
 		user = super(RegisterForm, self).save(commit=False)
 		user.set_password(self.cleaned_data["password1"])
-		user.nascimento = self.cleaned_data['nascimento']
-		user.ingresso_ensino_medio = self.cleaned_data['ingresso_ensino_medio']
-		user.genero = self.cleaned_data['genero']
 		if commit:
 			user.save()
 			a = Group.objects.get(name='Alunos') 

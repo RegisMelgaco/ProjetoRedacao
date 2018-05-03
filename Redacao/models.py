@@ -21,6 +21,7 @@ class Proposta(models.Model):
 	titulo             = models.CharField(max_length=110, null=False)
 	numero             = models.IntegerField(null=False)
 	imagem             = models.ImageField(upload_to='Propostas/%Y/%m/', null=False)
+	em_uso             = models.BooleanField(default=False)
 
 	def __str__(self):
 		return self.titulo

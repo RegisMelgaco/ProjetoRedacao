@@ -5,5 +5,9 @@
 </head>
 <body>
 	<h1>Este é o painel do Corretor</h1>
+	<h3>Essas são as propostas que podem ser escolhidas</h3>
+	{% for p in propostas %}
+		<img style="width: 200px; margin: 10px" src="media/{{ p.imagem }}">
+	{% endfor %}
 </body>
 </html>

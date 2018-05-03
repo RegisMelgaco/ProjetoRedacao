@@ -4,12 +4,17 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 
 from .forms import *
+from Redacao.models import Proposta
 
 class PainelAlunoView(View):
 	def get(self, request):
 		if request.user.is_authenticated:
 			if request.user.has_perm('Usuarios.acesso_painel_aluno'):
-				return render(request, 'Aluno/painelAluno.html')
+				propostas = Proposta.objects.filter(em_uso = True)
+
+				dic = {'propostas': propostas}
+
+				return render(request, 'Aluno/painelAluno.html', dic)
 			else:
 				messages.add_message(request, messages.INFO, 'Você não tem permição de entrar no painel de alunos')
 				return redirect('Visitante:infoFalhaUrl')

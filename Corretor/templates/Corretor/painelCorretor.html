@@ -5,9 +5,19 @@
 </head>
 <body>
 	<h1>Este é o painel do Corretor</h1>
-	<h3>Essas são as propostas que podem ser escolhidas</h3>
-	{% for p in propostas %}
-		<img style="width: 200px; margin: 10px" src="media/{{ p.imagem }}">
+	{% for message in messages %}
+		<li>{{ message }}</li>
 	{% endfor %}
+
+		<h3>Essas são as propostas que podem ser escolhidas</h3>
+	{% for p in propostas %}
+	<img style="width: 200px; margin: 10px" src="media/{{ p.imagem }}">
+	{% endfor %}
+
+	<br>
+	<form action="{% url 'Corretor:pedirRedacaoUrl' %}" method="post">
+		{% csrf_token %}
+		<input type="submit" value="Pedir Redação" {{ disable }}/>
+	</form>
 </body>
 </html>

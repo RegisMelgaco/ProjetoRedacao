@@ -3,15 +3,19 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth import authenticate
 
-from Redacao.models import Proposta
+from Redacao.models import (Proposta, Redacao)
 
 class PainelCorretorView(View):
 	def get(self, request):
 		if request.user.is_authenticated:
 			if request.user.has_perm('Usuarios.acesso_painel_corretor'):
 				propostas = Proposta.objects.filter(em_uso = True)
+				if request.user.redacoes.filter(corrigida=False):
+					disable = "disabled"
+				else:
+					disable = ''
 
-				dic = {'propostas': propostas}
+				dic = {'propostas': propostas, 'disable': disable}
 				return render(request, 'Corretor/painelCorretor.html', dic)
 			else:
 				messages.add_message(request, messages.INFO, 'Você não tem permição de entrar no painel de corretores')
@@ -19,3 +23,12 @@ class PainelCorretorView(View):
 		else:
 			messages.add_message(request, messages.INFO, 'Você não está logado')
 			return redirect('Visitante:infoFalhaUrl')
+
+class PedirRedacaoView(View):
+	def post(self, request):
+		request.user.redacoes.add(Redacao.objects.filter(corrigida=False).first())
+		request.user.save()
+
+		messages.success(request, 'Pedido com Sucesso!')
+
+		return redirect('Corretor:painelCorretorUrl')

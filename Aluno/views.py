@@ -4,15 +4,16 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 
 from .forms import *
-from Redacao.models import Proposta
+from Redacao.models import (Proposta, Redacao)
 
 class PainelAlunoView(View):
 	def get(self, request):
 		if request.user.is_authenticated:
 			if request.user.has_perm('Usuarios.acesso_painel_aluno'):
 				propostas = Proposta.objects.filter(em_uso = True)
+				redacoes = request.user.redacoes.all()
 
-				dic = {'propostas': propostas}
+				dic = {'propostas': propostas, 'redacoes': redacoes}
 
 				return render(request, 'Aluno/painelAluno.html', dic)
 			else:

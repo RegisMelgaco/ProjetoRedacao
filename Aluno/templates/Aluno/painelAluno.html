@@ -9,6 +9,10 @@
 	{% for p in propostas %}
 		<img style="width: 200px; margin: 10px" src="media/{{ p.imagem }}">
 	{% endfor %}
+	<h3>Suas Redações</h3>
+	{% for r in redacoes %}
+		<img style="width: 200px; margin: 10px" src="media/{{ r.redacao }}">
+	{% endfor %}
 	<p><a href="{% url 'Aluno:perfilUrl' %}">Alterar informações de Perfil</a></p>
 	<p><a href="{% url 'Redacao:enviarRedacaoUrl' %}">Enviar Redação</a></p>
 </body>

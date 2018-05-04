@@ -10,12 +10,17 @@ class PainelCorretorView(View):
 		if request.user.is_authenticated:
 			if request.user.has_perm('Usuarios.acesso_painel_corretor'):
 				propostas = Proposta.objects.filter(em_uso = True)
-				if request.user.redacoes.filter(corrigida=False):
-					disable = "disabled"
+				ele_tem_redacao = request.user.redacoes.filter(corrigida=False)
+				if ele_tem_redacao:
+					can_corrigir = ''
 				else:
-					disable = ''
+					can_corrigir = "disabled"
+				if Redacao.objects.filter(corrigida=False) and not ele_tem_redacao:
+					can_ask_redacao = ''
+				else:
+					can_ask_redacao = "disabled"
 
-				dic = {'propostas': propostas, 'disable': disable}
+				dic = {'propostas': propostas, 'can_ask_redacao': can_ask_redacao, 'can_corrigir': can_corrigir}
 				return render(request, 'Corretor/painelCorretor.html', dic)
 			else:
 				messages.add_message(request, messages.INFO, 'Você não tem permição de entrar no painel de corretores')

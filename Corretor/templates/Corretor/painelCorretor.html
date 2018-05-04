@@ -17,9 +17,12 @@
 	<br>
 	<form action="{% url 'Redacao:pedirRedacaoUrl' %}" method="post">
 		{% csrf_token %}
-		<input type="submit" value="Pedir Redação" {{ disable }}/>
+		<input type="submit" value="Pedir Redação" {{ can_ask_redacao }}/>
 	</form>
 	<br>
-	<a href="{% url 'Redacao:corrigirUrl' %}">corrigir</a>
+	<form action="{% url 'Redacao:corrigirUrl' %}" method="get">
+		{% csrf_token %}
+		<input type="submit" value="Corrigir" {{ can_corrigir }}/>
+	</form>
 </body>
 </html>

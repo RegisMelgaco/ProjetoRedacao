@@ -16,7 +16,8 @@ class UserAdmin(BaseUserAdmin):
 		(None, {'fields': ('email', 'password')}),
 		('Personal info', {'fields': ('primeiro_nome', 'segundo_nome','red_pontos', 'cep')}),
 		('Permissions', {'fields': ('admin',)}),
-		('Groups', {'fields': ('groups',)})
+		('Groups', {'fields': ('groups',)}),
+		('Redações', {'fields': ('redacoes',)}),
 	)
 	add_fieldsets = (
 		(None, {

@@ -7,10 +7,6 @@ app_name = 'Redacao'
 
 urlpatterns = [
 	path('Terminal-Aluno/Enviar-Redacao', EnviarRedacaoView.as_view(), name='enviarRedacaoUrl'),
+	path('Painel-Corretor/pedir-redacao', PedirRedacaoView.as_view(), name='pedirRedacaoUrl'),
+	path('Painel-Corretor/corrigir', CorrigirView.as_view(), name='corrigirUrl')
 ]
-
-
-"""
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-"""

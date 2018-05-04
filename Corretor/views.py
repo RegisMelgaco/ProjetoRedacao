@@ -24,11 +24,3 @@ class PainelCorretorView(View):
 			messages.add_message(request, messages.INFO, 'Você não está logado')
 			return redirect('Visitante:infoFalhaUrl')
 
-class PedirRedacaoView(View):
-	def post(self, request):
-		request.user.redacoes.add(Redacao.objects.filter(corrigida=False).first())
-		request.user.save()
-
-		messages.success(request, 'Pedido com Sucesso!')
-
-		return redirect('Corretor:painelCorretorUrl')

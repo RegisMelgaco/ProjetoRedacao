@@ -52,10 +52,10 @@ class StudentRegisterForm(RegisterForm):
 	def save(self, commit=True):
 		user = super(RegisterForm, self).save(commit=False)
 		user.set_password(self.cleaned_data["password1"])
+		user.save(commit=False)
+		a = Group.objects.get(name='Alunos') 
+		user.groups.add(a)
 		if commit:
-			user.save()
-			a = Group.objects.get(name='Alunos') 
-			user.groups.add(a)
 			user.save()
 		return user
 
@@ -77,9 +77,9 @@ class TeacherRegisterForm(RegisterForm):
 	def save(self, commit=True):
 		user = super(RegisterForm, self).save(commit=False)
 		user.set_password(self.cleaned_data["password1"])
+		user.save(commit=False)
+		p = Group.objects.get(name='Corretores') 
+		user.groups.add(p)
 		if commit:
-			user.save()
-			p = Group.objects.get(name='Corretores') 
-			user.groups.add(p)
 			user.save()
 		return user

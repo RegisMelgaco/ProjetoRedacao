@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Corrigir</title>
+</head>
+<body>
+	{% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+	<img style="width: 50%" src="http://{{ request.get_host }}/media/{{ redacao.redacao }}">
+	<form enctype="multipart/form-data" method="post" action="{% url 'Redacao:corrigirUrl' %}">
+		{% csrf_token %}
+		{{ f.as_p }}
+		<input type="submit" name="submit" value="Enviar" />
+	</form>
+</body>
+</html>

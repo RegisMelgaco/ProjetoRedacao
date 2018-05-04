@@ -11,7 +11,13 @@
 	{% endfor %}
 	<h3>Suas Redações</h3>
 	{% for r in redacoes %}
+		<p>redação</p>
 		<img style="width: 200px; margin: 10px" src="media/{{ r.redacao }}">
+		{% if r.corrigida %}
+			<p>correção</p>
+			<img style="width: 200px; margin: 10px" src="media/{{ r.correcao }}">
+			<p>competencia 1: {{r.nota_competencia_1}} | competencia 2: {{ r.nota_competencia_2 }} | competencia 3: {{ r.nota_competencia_3 }} | competencia 4: {{ r.nota_competencia_4 }} | competencia 5: {{ r.nota_competencia_5 }} | NOTA: {{r.nota}}</p>
+		{% endif %}
 	{% endfor %}
 	<p><a href="{% url 'Aluno:perfilUrl' %}">Alterar informações de Perfil</a></p>
 	<p><a href="{% url 'Redacao:enviarRedacaoUrl' %}">Enviar Redação</a></p>

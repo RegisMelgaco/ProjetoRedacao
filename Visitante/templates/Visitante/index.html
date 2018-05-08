@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Projeto Redação</title>
-</head>
-<body>
+{% extends 'Visitante/base.html' %}
+
+{% block content %}
 	<center>
 		<h1>Bem vindo ao Projeto Redação</h1>
+		{% load static %}
 		<p>Aqui será a nova casa para suas redações</p>
 		{% if user.is_authenticated %}
 			Oi {{ user.email }}!
@@ -28,5 +25,4 @@
 			<a href="{% url 'Visitante:login' %}">login</a>
 		{% endif %}
 	</center>
-</body>
-</html>
+{% endblock %}

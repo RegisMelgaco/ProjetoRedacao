@@ -6,15 +6,20 @@
 <body>
 	<h3>Alterar informações do Perfil</h3>
 	{% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+	<ul>
+		{% for message in messages %}
+			<li>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
 	<form method="POST">
 		{% csrf_token %}
-		{{ f.as_p }}
+		<p><label for="id_email">Email:</label> <input name="email" maxlength="255" id="id_email" type="email"></p>
+		<p><label for="id_password1">Senha:</label> <input name="password1" maxlength="128" id="id_password1" type="password"></p>
+		<p><label for="id_password2">Confirme a Senha:</label> <input name="password2" maxlength="128" id="id_password2" type="password"></p>
+		<p><label for="id_primeiro_nome">Primeiro nome:</label> <input name="primeiro_nome" maxlength="20" id="id_primeiro_nome" type="text"></p>
+		<p><label for="id_segundo_nome">Segundo nome:</label> <input name="segundo_nome" maxlength="60" id="id_segundo_nome" type="text"></p>
+		<p><label for="id_cep">Cep:</label> <input name="cep" maxlength="9" id="id_cep" type="text"></p>
 		<input type="submit" name="submit" value="Registrar" />
 	</form>
 </body>

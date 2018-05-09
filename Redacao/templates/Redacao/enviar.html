@@ -6,16 +6,22 @@
 </head>
 <body>
 	{% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+	<ul>
+		{% for message in messages %}
+			<li>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
 	<h1 style="align-content: center;">Enviar</h1>
 	<form enctype="multipart/form-data" method="post" action="{% url 'Redacao:enviarRedacaoUrl' %}">
 		{% csrf_token %}
-		{{ f.as_p }}
+		<p><label for="id_redacao">Redacao:</label> <input name="redacao" required="" id="id_redacao" type="file"></p>
+		<p><label for="id_proposta">Proposta:</label> <select name="proposta" required="" id="id_proposta">
+			<option value="" selected="">---------</option>
+			{% for p in ps %}
+				<option value="{{ p.id }}">{{ p.titulo }}</option>
+			{% endfor %}
+		</select></p>
 		<input type="submit" name="submit" value="Enviar" />
 	</form>
 </body>

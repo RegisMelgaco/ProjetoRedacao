@@ -3,12 +3,13 @@ from django.views import View
 from django.contrib import messages
 
 from .forms import *
-from .models import Redacao
+from .models import (Redacao, Proposta)
 
 class EnviarRedacaoView(View):
 	def get(self, request):
 		f = SendRedacaoForm()
-		dic = { 'f': f }
+		ps = Proposta.objects.filter(em_uso = True)
+		dic = { 'f': f, 'ps': ps}
 
 		return render(request, 'Redacao/enviar.html', dic)
 	def post(self, request):

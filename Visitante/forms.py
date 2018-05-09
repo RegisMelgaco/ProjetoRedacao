@@ -52,7 +52,7 @@ class StudentRegisterForm(RegisterForm):
 	def save(self, commit=True):
 		user = super(RegisterForm, self).save(commit=False)
 		user.set_password(self.cleaned_data["password1"])
-		user.save(commit=False)
+		user.save()
 		a = Group.objects.get(name='Alunos') 
 		user.groups.add(a)
 		if commit:

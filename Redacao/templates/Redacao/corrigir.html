@@ -11,7 +11,7 @@
             {% endfor %}
         </ul>
     {% endif %}
-	<img style="width: 50%" src="http://{{ request.get_host }}/media/{{ redacao.redacao }}">
+	<img style="width: 50%" src="{{ redacao_url }}{{ redacao.redacao }}">
 	<form enctype="multipart/form-data" method="post" action="{% url 'Redacao:corrigirUrl' %}">
 		{% csrf_token %}
 		{{ f.as_p }}

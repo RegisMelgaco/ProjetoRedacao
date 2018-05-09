@@ -65,8 +65,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 	staff  = models.BooleanField(default=False, null=False)
 	admin  = models.BooleanField(default=False, null=False)
 
-	primeiro_nome         = models.CharField("primeiro Nome", max_length=12, null=False)
-	segundo_nome          = models.CharField("segundo Nome", max_length=30, null=False)
+	primeiro_nome         = models.CharField("primeiro Nome", max_length=20, null=False)
+	segundo_nome          = models.CharField("segundo Nome", max_length=60, null=False)
 	cep                   = models.CharField("CEP", max_length=9, null=True)
 	red_pontos            = models.IntegerField(default=0, null=False)
 

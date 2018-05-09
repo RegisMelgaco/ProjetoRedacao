@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['projeto-redacao.herokuapp.com', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['projeto-redacao.herokuapp.com', '127.0.0.1', '0.0.0.0', '192.168.0.101']
 
 AUTH_USER_MODEL = 'Usuarios.User'
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     'Visitante',
     'Usuarios',
     'Redacao',
@@ -69,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'projeto_redacao.context_processors.redacao_url'
             ],
         },
     },
@@ -110,6 +112,20 @@ DATABASES = {
     }
 }
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'redacao-bucket'
+AWS_REDACOES_STORAGE_BUCKET_NAME = 'redacoes-bucket'
+AWS_SERVER = 's3-sa-east-1'
+AWS_S3_CUSTOM_DOMAIN = '%s.amazonaws.com/%s' % (AWS_SERVER, AWS_STORAGE_BUCKET_NAME)
+AWS_STATIC_LOCATION = 'static'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_STATIC_LOCATION)
+REDACOES_URL = 'https://%s.amazonaws.com/%s/' % (AWS_SERVER, AWS_REDACOES_STORAGE_BUCKET_NAME)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 # Password validation

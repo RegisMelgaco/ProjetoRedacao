@@ -1,23 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Projeto Redação</title>
-</head>
-<body>
-	<center>
-		<h1>Cadastro</h1>
-	</center>
-	{% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-	<form method="POST">
-		{% csrf_token %}
-		{{ f.as_p }}
-		<input type="submit" name="submit" value="Registrar" />
-	</form>
-</body>
-</html>
+{% extends 'Visitante/base.html' %}
+
+{% block content %}
+
+{% if messages %}
+<ul>
+	{% for message in messages %}
+	<li>{{ message }}</li>
+	{% endfor %}
+</ul>
+{% endif %}
+
+<h1>Cadastro</h1>
+<div class="card">
+	<div class="card-content">
+		<form method="POST">
+			{% csrf_token %}
+
+			<div class="row">
+				<div class="input-field col s12 m3">
+					<input name="primeiro_nome" maxlength="30" required="" id="id_primeiro_nome" type="text">
+					<label class="active" for="id_primeiro_nome">Primeiro nome</label>
+				</div>
+				<div class="input-field col s12 m6">
+					<input name="segundo_nome" maxlength="60" required="" id="id_segundo_nome" type="text">
+					<label class="active" for="id_segundo_nome">Segundo nome</label>
+				</div>
+				<div class="input-field col s12 m3">
+					<input name="cep" maxlength="9" required="" id="id_cep" type="text">
+					<label class="active" for="id_cep">CEP</label>
+				</div>
+				<div class="input-field col s12">
+					<input name="email" maxlength="255" required="" id="id_email" type="email">
+					<label class="active" for="id_email">Email</label>
+				</div>
+				<div class="input-field col s12 m6">
+					<input name="password1" required="" id="id_password1" type="password">
+					<label class="active" for="id_password1">Senha</label>
+				</div>
+				<div class="input-field col s12 m6">
+					<input name="password2" required="" id="id_password2" type="password">
+					<label class="active" for="id_password2">Confirme a Senha</label>
+				</div>
+			</div>
+			<button class="btn waves-effect waves-light" type="submit" name="action">
+				Matricular
+			</button>
+		</form>
+	</div>
+</div>
+{% endblock %}

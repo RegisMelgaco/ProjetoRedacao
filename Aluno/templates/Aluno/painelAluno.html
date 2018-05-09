@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,15 +8,15 @@
 	<h1>Este é o painel do Aluno</h1>
 	<h3>Escolha sua proposta agora!</h3>
 	{% for p in propostas %}
-		<img style="width: 200px; margin: 10px" src="media/{{ p.imagem }}">
+		<img style="width: 200px; margin: 10px" src="{% static '' %}{{ p.imagem }}">
 	{% endfor %}
 	<h3>Suas Redações</h3>
 	{% for r in redacoes %}
 		<p>redação</p>
-		<img style="width: 200px; margin: 10px" src="media/{{ r.redacao }}">
+		<img style="width: 200px; margin: 10px" src="{{ redacao_url }}{{ r.redacao }}">
 		{% if r.corrigida %}
 			<p>correção</p>
-			<img style="width: 200px; margin: 10px" src="media/{{ r.correcao }}">
+			<img style="width: 200px; margin: 10px" src="{{ redacao_url }}{{ r.correcao }}">
 			<p>competencia 1: {{r.nota_competencia_1}} | competencia 2: {{ r.nota_competencia_2 }} | competencia 3: {{ r.nota_competencia_3 }} | competencia 4: {{ r.nota_competencia_4 }} | competencia 5: {{ r.nota_competencia_5 }} | NOTA: {{r.nota}}</p>
 		{% endif %}
 	{% endfor %}

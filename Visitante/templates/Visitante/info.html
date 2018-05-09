@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Opa!</title>
-</head>
-<body>
+{% extends 'Visitante/base.html' %}
+
+{% block content %}
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
@@ -11,5 +8,4 @@
     {% endfor %}
 </ul>
 {% endif %}
-</body>
-</html>
+{% endblock %}

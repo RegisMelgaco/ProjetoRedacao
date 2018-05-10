@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
+    'pagseguro',
     'Visitante',
     'Usuarios',
     'Redacao',
@@ -127,6 +128,10 @@ STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_STATIC_LOCATION)
 REDACOES_URL = 'https://%s.amazonaws.com/%s/' % (AWS_SERVER, AWS_REDACOES_STORAGE_BUCKET_NAME)
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
+PAGSEGURO_EMAIL = 'regis.melgaco1998@hotmail.com'
+PAGSEGURO_TOKEN = '117DC2234CB6416E91EF7464C042CF0B'
+PAGSEGURO_SANDBOX = True # se o valor for True, as requisições a api serão feitas usando o PagSeguro Sandbox.
+PAGSEGURO_LOG_IN_MODEL = False # se o valor for True, os checkouts e transações vão ser logadas no database.
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

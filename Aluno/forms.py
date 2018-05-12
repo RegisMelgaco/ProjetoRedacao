@@ -4,7 +4,7 @@ from django.utils import timezone
 
 from Usuarios.models import User
 
-class ModifyUser(forms.Form):
+class ModifyUserForm(forms.Form):
 	email             = forms.EmailField(max_length=255, required=False)
 	password1         = forms.CharField(label='Senha', widget=forms.PasswordInput, required=False, max_length=128)
 	password2         = forms.CharField(label='Confirme a Senha', widget=forms.PasswordInput, required=False, max_length=128)
@@ -27,3 +27,6 @@ class ModifyUser(forms.Form):
 		if commit:
 			user.save()
 		return user
+
+class CompraForm(forms.Form):
+	quantidade        = forms.IntegerField()

@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^', include('Aluno.urls')),
     url(r'^', include('Redacao.urls')),
     url(r'^', include('Corretor.urls')),
+    url(r'^', include('Pagamento.urls')),
     url(r'^retorno/pagseguro/', include('pagseguro.urls')),
 ]

@@ -11,9 +11,10 @@ class PainelAlunoView(View):
 		if request.user.is_authenticated:
 			if request.user.has_perm('Usuarios.acesso_painel_aluno'):
 				propostas = Proposta.objects.filter(em_uso = True)
-				redacoes = request.user.redacoes.all()
+				redacoes  = request.user.redacoes.all()
+				f = CompraForm()
 
-				dic = {'propostas': propostas, 'redacoes': redacoes}
+				dic = {'propostas': propostas, 'redacoes': redacoes,'f': f}
 
 				return render(request, 'Aluno/painelAluno.html', dic)
 			else:
@@ -27,7 +28,7 @@ class PerfilView(View):
 	def get(self, request):
 		if request.user.is_authenticated:
 			if request.user.has_perm('Usuarios.acesso_terminal_aluno'):
-				f = ModifyUser()
+				f = ModifyUserForm()
 				dic = { 'f': f }
 
 				return render(request, 'Aluno/perfil.html', dic)
@@ -40,7 +41,7 @@ class PerfilView(View):
 	def post(self, request):
 		if request.user.is_authenticated:
 			if request.user.has_perm('Usuarios.acesso_terminal_aluno'):
-				f = ModifyUser(request.POST)
+				f = ModifyUserForm(request.POST)
 
 				if f.is_valid():
 					f.save(user=request.user)

@@ -7,7 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['projeto-redacao.herokuapp.com', '127.0.0.1', 'www.xn--redao-dra1a.online', '192.168.100.102']
+ALLOWED_HOSTS = ['projeto-redacao.herokuapp.com', 'xn--redao-dra1a.online', '127.0.0.1', 'redação.online', '192.168.100.102']
 
 AUTH_USER_MODEL = 'Usuarios.User'
 
